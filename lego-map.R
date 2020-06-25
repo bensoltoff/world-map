@@ -44,11 +44,13 @@ d <- as_tibble(world.matrix[1:95, 1:191]) %>%
   # add row numbers
   mutate(row = -row_number()) %>%
   # gather all the columns
-  pivot_longer(cols = c(-row),
-               names_to = "column",
-               values_to = "value",
-               names_transform = list(column = parse_number),
-               values_transform = list(value = parse_number))
+  pivot_longer(
+    cols = c(-row),
+    names_to = "column",
+    values_to = "value",
+    names_transform = list(column = parse_number),
+    values_transform = list(value = parse_number)
+  )
 
 # need to manually fix some of the interpolation
 d <- d %>%
@@ -61,7 +63,7 @@ d <- d %>%
     value = ifelse(column > 47 & column < 100 & row > -20 & value == 6, 8, value),
     # fix last column white squares which recorded latitude
     value = ifelse(column == max(column) & row > -90 & value == 8, 1, value)
-    )
+  )
 
 # create graph
 g <- ggplot(d, aes(x = column, y = row, fill = value)) +
@@ -108,7 +110,3 @@ render_camera(
 )
 render_snapshot(clear = FALSE)
 render_depth(focus = 0.72, focallength = 250)
-
-
-
-
