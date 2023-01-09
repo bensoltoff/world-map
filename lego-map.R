@@ -95,17 +95,18 @@ g1 <- g + theme(
 g1
 
 # save output
-ggsave(filename = here("output", "lego-map.svg"), plot = g1, width = 10, height = 5, units = "in")
-ggsave(filename = here("output", "lego-map.png"), plot = g1, width = 10, height = 5, units = "in")
+ggsave(filename = here("output", "lego-map.svg"), plot = g1, width = 24, height = 12, units = "in")
+ggsave(filename = here("output", "lego-map.pdf"), plot = g1, width = 24, height = 12, units = "in")
+ggsave(filename = here("output", "lego-map.png"), plot = g1, width = 24, height = 12, units = "in")
 
 # experiment ray
-plot_gg(g1, width = 10, height = 4.41, scale = 30, offset_edges = TRUE)
+plot_gg(g1, width = 10, height = 5, scale = 30, offset_edges = TRUE)
 
 # africa
 render_camera(
   fov = 70,
   zoom = 0.1,
-  theta = 58,
+  theta = 65,
   phi = 18
 )
 render_snapshot(clear = FALSE)
